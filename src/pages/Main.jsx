@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import StudentCard from "../components/StudentCard";
+import { AiOutlineLoading } from "react-icons/ai";
 import { StudentList } from "../utils/api";
 
 const Main = () => {
@@ -37,11 +38,14 @@ const Main = () => {
     );
   };
   const handleTagSearch = () => {
+    // eslint-disable-next-line array-callback-return
     return students.filter((student) => {
       if (tagSearch === "") {
         return student;
       } else if (
-        student.tags.find((tag) => tag.toLowerCase().includes(tagSearch))
+        student.tags.find((tag) =>
+          tag.toLowerCase().includes(tagSearch.toLowerCase())
+        )
       ) {
         return student;
       }
@@ -50,8 +54,10 @@ const Main = () => {
 
   return (
     <>
-      {loading ? (
-        <h1>Loading</h1>
+      {!loading ? (
+        <div className="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] text-5xl text-blue-600 ">
+          <AiOutlineLoading className="animate-spin" />
+        </div>
       ) : (
         <div className="xl:mx-[auto] 2xl:mx-[25vw]">
           <div>
