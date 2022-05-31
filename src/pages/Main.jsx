@@ -16,6 +16,7 @@ const Main = () => {
         await axios.get(StudentList).then((res) => {
           let newArray = [];
           const data = res.data.students;
+          // eslint-disable-next-line array-callback-return
           data.map((student) => {
             student.tags = [];
             newArray.push(student);
@@ -54,7 +55,7 @@ const Main = () => {
 
   return (
     <>
-      {!loading ? (
+      {loading ? (
         <div className="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] text-5xl text-blue-600 ">
           <AiOutlineLoading className="animate-spin" />
         </div>
